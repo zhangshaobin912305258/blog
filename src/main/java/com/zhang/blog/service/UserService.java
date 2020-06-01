@@ -17,5 +17,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface UserService extends IService<User> {
 
+    /*Result login(LoginDto loginDto, HttpServletResponse httpServletResponse);*/
+
+    User getByUsername(String userName);
+
     Result login(LoginDto loginDto, HttpServletResponse httpServletResponse);
 }

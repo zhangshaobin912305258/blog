@@ -1,15 +1,19 @@
 package com.zhang.blog.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import lombok.experimental.Accessors;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -25,29 +29,106 @@ import javax.validation.constraints.NotEmpty;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("m_user")
-public class User implements Serializable {
+@TableName("user")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class User implements Serializable, UserDetails {
 
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @NotEmpty(message = "用户名不能为空")
+    /**
+     * 用户名
+     */
     private String username;
 
-    private String avatar;
-    @NotEmpty(message = "邮箱不能为空")
-    @Email(message = "邮箱格式不正确")
-    private String email;
-
+    /**
+     * 密码
+     */
     private String password;
 
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createdAt;
+
+    /**
+     * 修改时间
+     */
+    private LocalDateTime updatedAt;
+
+    /**
+     * 手机号
+     */
+    private String phone;
+
+    /**
+     * 邮箱
+     */
+    private String email;
+
+    /**
+     * 加密盐
+     */
+    private String salt;
+
+    /**
+     * 昵称
+     */
+    private String nickName;
+
+    /**
+     * 状态 0正常 -1异常
+     */
     private Integer status;
 
-    private LocalDateTime created;
+    @TableField(exist = false)
+    private List<String> roles;
 
-    private LocalDateTime lastLogin;
+    /** 权限列表 */
+    @TableField(exist = false)
+    private Collection<? extends GrantedAuthority> authorities;
 
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
+
+    /** 用户账号是否过期 */
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    /** 用户账号是否被锁定 */
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    /** 用户密码是否过期 */
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    /** 用户是否可用 */
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 
 }

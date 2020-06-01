@@ -3,7 +3,6 @@ package com.zhang.blog.exceptionHandler;
 import com.zhang.blog.constants.ResultCode;
 import com.zhang.blog.vo.Result;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.ShiroException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -18,13 +17,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = RuntimeException.class)
     public Result handler(RuntimeException e) {
         log.error("运行时异常：----------------{}", e);
-        return Result.fail(ResultCode.UNAUTHORIZED, e.getMessage());
-    }
-
-    //@ResponseStatus(HttpStatus.UNAUTHORIZED)
-    @ExceptionHandler(value = ShiroException.class)
-    public Result handler(ShiroException e) {
-        //log.error("权限校验异常：----------------{}", e);
         return Result.fail(ResultCode.UNAUTHORIZED, e.getMessage());
     }
 
