@@ -41,6 +41,7 @@ public class TestController {
      */
     @Decrypt
     @PostMapping("/test02")
+    @Encrypt
     public Result test02(@RequestBody User testBean){
         return Result.ok(testBean);
     }

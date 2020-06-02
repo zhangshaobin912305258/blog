@@ -49,7 +49,8 @@ public class DecryptHttpInputMessage implements HttpInputMessage {
                 }
 
                 decryptBody = json.toString();
-                log.info("收到的加密报文：{},解密后报文：{}", content, decryptBody);
+                log.info("收到的加密报文:{}", content);
+                log.info("解密后报文:{}", decryptBody);
             }
 
             this.body = new ByteArrayInputStream(decryptBody.getBytes());

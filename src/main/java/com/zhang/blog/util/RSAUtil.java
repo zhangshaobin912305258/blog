@@ -1,7 +1,6 @@
 package com.zhang.blog.util;
 
 import cn.hutool.core.codec.Base64;
-import org.apache.logging.log4j.util.Base64Util;
 
 import javax.crypto.Cipher;
 import java.io.ByteArrayOutputStream;

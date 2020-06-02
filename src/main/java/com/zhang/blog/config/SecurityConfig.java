@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.OPTIONS, "/**")
                 .permitAll()
                 // 登录接口放行
-                .antMatchers("/login", "/doc.html**", "/", "/captcha.jpg**", "/actuator/**")
+                .antMatchers("/login", "/doc.html**", "/", "/captcha.jpg**", "/actuator/**","/test02")
                 .permitAll()
                 // 其他接口全部接受验证
                 .anyRequest()

@@ -63,7 +63,8 @@ public class EncryptResponseBodyAdvice implements ResponseBodyAdvice<Result> {
                     byte[] bytes = content.getBytes();
                     byte[] encodedData = RSAUtil.encrypt(bytes, publicKey);
                     String result = Base64.encode(encodedData);
-                    log.info("加密前报文：{}，加密后报文：{}", content, result);
+                    log.info("加密前报文:{}", content);
+                    log.info("加密后报文:{}", result);
                     body.setData(result);
                     return body;
                 } catch (Exception var13) {
