@@ -1,6 +1,5 @@
 package com.zhang.blog.security;
 
-import com.zhang.blog.constants.SecurityConstants;
 import com.zhang.blog.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,12 +26,13 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+    public static final String HEADER_STRING = "Authorization";
 
     @Override
     protected void doFilterInternal(
             HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-        String token = request.getHeader(SecurityConstants.HEADER_STRING);
+        String token = request.getHeader(HEADER_STRING);
         if (null != token) {
             String username = jwtTokenUtil.getUsernameFromToken(token);
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {

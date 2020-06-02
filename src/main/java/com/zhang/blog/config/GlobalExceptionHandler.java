@@ -1,4 +1,4 @@
-package com.zhang.blog.exceptionHandler;
+package com.zhang.blog.config;
 
 import com.zhang.blog.constants.ResultCode;
 import com.zhang.blog.vo.Result;

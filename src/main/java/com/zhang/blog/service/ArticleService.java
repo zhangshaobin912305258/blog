@@ -2,6 +2,9 @@ package com.zhang.blog.service;
 
 import com.zhang.blog.entity.Article;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zhang.blog.vo.Result;
+import com.zhang.blog.vo.request.PageRequestVo;
+import com.zhang.blog.vo.response.PageResponseVo;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ArticleService extends IService<Article> {
 
+    Result<PageResponseVo> listByPage(PageRequestVo pageRequestVo);
 }

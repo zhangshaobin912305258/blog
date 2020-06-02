@@ -58,6 +58,4 @@ public class LogOperation implements Serializable {
      * 用户昵称
      */
     private String nickName;
-
-
 }

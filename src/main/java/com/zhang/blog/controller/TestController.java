@@ -2,6 +2,7 @@ package com.zhang.blog.controller;
 
 import com.zhang.blog.annotation.Decrypt;
 import com.zhang.blog.annotation.Encrypt;
+import com.zhang.blog.converter.UserConverter;
 import com.zhang.blog.entity.User;
 import com.zhang.blog.vo.Result;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -41,9 +42,8 @@ public class TestController {
      */
     @Decrypt
     @PostMapping("/test02")
-    @Encrypt
     public Result test02(@RequestBody User testBean){
-        return Result.ok(testBean);
+        return Result.ok(UserConverter.INSTANCE.domain2Vo(testBean));
     }
 
 }

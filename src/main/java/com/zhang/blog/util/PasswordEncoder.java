@@ -54,9 +54,9 @@ public class PasswordEncoder {
     }
 
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         User encrypt = encrypt(User.builder().username("admin").password("admin").build());
         System.out.println(encrypt);
-    }
+    }*/
 
 }

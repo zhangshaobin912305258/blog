@@ -1,13 +1,9 @@
 package com.zhang.blog.vo.response;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.zhang.blog.entity.Permission;
-import com.zhang.blog.entity.Role;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * 类描述：
@@ -48,10 +44,4 @@ public class UserVo implements Serializable {
      * 昵称
      */
     private String nickName;
-
-    /**
-     * 状态 0正常 -1异常
-     */
-    private Integer status;
-
 }
