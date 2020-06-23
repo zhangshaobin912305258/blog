@@ -116,6 +116,12 @@
             <artifactId>aspectjweaver</artifactId>
             <version>1.9.2</version>
         </dependency>
+        <!-- 生成api文档工具类 -->
+        <dependency>
+            <groupId>io.github.yedaxia</groupId>
+            <artifactId>japidocs</artifactId>
+            <version>1.4</version>
+        </dependency>
     </dependencies>
 
     <build>

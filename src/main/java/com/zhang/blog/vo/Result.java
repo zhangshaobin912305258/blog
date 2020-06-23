@@ -9,8 +9,11 @@ import java.io.Serializable;
 @Data
 @Builder
 public class Result<T> implements Serializable {
+    //响应状态码 0:正常  非0:异常
     private int code;
+    //响应消息
     private String msg;
+    //响应内容
     private T data;
 
     public static <T> Result ok() {

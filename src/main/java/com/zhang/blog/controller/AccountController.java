@@ -7,6 +7,7 @@ import com.zhang.blog.annotation.Decrypt;
 import com.zhang.blog.service.UserService;
 import com.zhang.blog.vo.Result;
 import com.zhang.blog.vo.request.LoginDto;
+import com.zhang.blog.vo.response.UserVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.util.Map;
 
+/**
+ * 账号api
+ */
 @RestController
 @RequiredArgsConstructor
 public class AccountController extends BaseController {
@@ -27,7 +32,7 @@ public class AccountController extends BaseController {
      * @throws IOException
      */
     @GetMapping("captcha.jpg")
-    public Result captcha()  {
+    public Result<Map> captcha()  {
         LineCaptcha captcha = CaptchaUtil.createLineCaptcha(200, 100, 5, 50);
         String img = captcha.getImageBase64();
         String code = captcha.getCode();
@@ -44,7 +49,7 @@ public class AccountController extends BaseController {
      */
     @PostMapping("/login")
     @Decrypt
-    public Result login(@Validated @RequestBody LoginDto loginDto) {
+    public Result<UserVo> login(@Validated @RequestBody LoginDto loginDto) {
         return userService.login(loginDto, httpServletResponse);
     }
 

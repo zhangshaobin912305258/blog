@@ -4,6 +4,7 @@ import com.zhang.blog.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zhang.blog.vo.Result;
 import com.zhang.blog.vo.request.LoginDto;
+import com.zhang.blog.vo.response.UserVo;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,5 +22,5 @@ public interface UserService extends IService<User> {
 
     User getByUsername(String userName);
 
-    Result login(LoginDto loginDto, HttpServletResponse httpServletResponse);
+    Result<UserVo> login(LoginDto loginDto, HttpServletResponse httpServletResponse);
 }

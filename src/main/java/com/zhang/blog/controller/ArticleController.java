@@ -1,7 +1,5 @@
 package com.zhang.blog.controller;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.zhang.blog.entity.Article;
 import com.zhang.blog.service.ArticleService;
 import com.zhang.blog.vo.Result;
 import com.zhang.blog.vo.request.PageRequestVo;
@@ -15,9 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 /**
- * 类描述：
- * 创建时间：2020/6/2 4:22 下午
- * 创建人：zhang
+ * 文章api
  */
 @RestController
 @RequestMapping("/article")
@@ -26,6 +22,11 @@ public class ArticleController {
 
     private final ArticleService articleService;
 
+    /**
+     * 分页查询文章列表
+     * @param pageRequestVo
+     * @return
+     */
     @PostMapping("/listByPage")
     public Result<PageResult> listByPage(@RequestBody @Valid PageRequestVo pageRequestVo) {
         return articleService.listByPage(pageRequestVo);

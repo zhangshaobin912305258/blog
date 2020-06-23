@@ -1,0 +1,44 @@
+六月 23, 2020 10:54:18 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find java src paths:  [D:\workspace\blog\src\main\java\]
+六月 23, 2020 10:54:18 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: project type not set, try to figure out...
+六月 23, 2020 10:54:18 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start find controllers in path : D:\workspace\blog\src\main\java\
+六月 23, 2020 10:54:18 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find controller file : AccountController.java
+六月 23, 2020 10:54:18 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find controller file : ArticleController.java
+六月 23, 2020 10:54:18 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : AccountController.java
+六月 23, 2020 10:54:18 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: we think T should not be an enum type
+六月 23, 2020 10:54:18 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! Cannot find java file , in java file : D:\workspace\blog\src\main\java\com\zhang\blog\vo\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
+六月 23, 2020 10:54:18 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: we think T should not be an enum type
+六月 23, 2020 10:54:18 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! Cannot find java file , in java file : D:\workspace\blog\src\main\java\com\zhang\blog\vo\Result.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
+六月 23, 2020 10:54:18 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to parse controller file : AccountController.java
+六月 23, 2020 10:54:18 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : ArticleController.java
+六月 23, 2020 10:54:18 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! We found Collection without specified Class Type, Please check ! java file : PageResult.java
+六月 23, 2020 10:54:18 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to parse controller file : ArticleController.java
+六月 23, 2020 10:54:18 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: generate api docs start...
+六月 23, 2020 10:54:18 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : D:\workspace\blog\src\main\java\com\zhang\blog\controller\AccountController.java
+六月 23, 2020 10:54:19 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : D:\workspace\blog\src\main\java\com\zhang\blog\controller\AccountController.java
+六月 23, 2020 10:54:19 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : D:\workspace\blog\src\main\java\com\zhang\blog\controller\ArticleController.java
+六月 23, 2020 10:54:19 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : D:\workspace\blog\src\main\java\com\zhang\blog\controller\ArticleController.java
+六月 23, 2020 10:54:19 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: generate index start !!!
+六月 23, 2020 10:54:19 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: generate index done !!!
+六月 23, 2020 10:54:19 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: generate api docs done !!!

@@ -13,6 +13,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhang.blog.util.JwtTokenUtil;
 import com.zhang.blog.vo.Result;
 import com.zhang.blog.vo.request.LoginDto;
+import com.zhang.blog.vo.response.UserVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -76,7 +77,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public Result login(LoginDto loginDto, HttpServletResponse httpServletResponse) {
+    public Result<UserVo> login(LoginDto loginDto, HttpServletResponse httpServletResponse) {
         String username = loginDto.getUsername();
         String password = loginDto.getPassword();
         User user = getByUsername(username);
@@ -87,7 +88,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         Authentication authentication = authenticationManager.authenticate(upToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserDetails userDetails = loadUserByUsername(username);
-        String token = jwtTokenUtil.generateToken(userDetails);
+        String token = jwtTokenUtil.generateToken(user);
         httpServletResponse.setHeader("Authorization", token);
         httpServletResponse.setHeader("Access-control-Expose-Headers", "Authorization");
         return Result.ok(userMapper.toDto(user));
