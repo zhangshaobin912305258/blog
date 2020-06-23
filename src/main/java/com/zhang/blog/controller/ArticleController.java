@@ -5,9 +5,8 @@ import com.zhang.blog.entity.Article;
 import com.zhang.blog.service.ArticleService;
 import com.zhang.blog.vo.Result;
 import com.zhang.blog.vo.request.PageRequestVo;
-import com.zhang.blog.vo.response.PageResponseVo;
+import com.zhang.blog.vo.response.PageResult;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.jaxb.SpringDataJaxb;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +27,7 @@ public class ArticleController {
     private final ArticleService articleService;
 
     @PostMapping("/listByPage")
-    public Result<PageResponseVo> listByPage(@RequestBody @Valid PageRequestVo pageRequestVo) {
+    public Result<PageResult> listByPage(@RequestBody @Valid PageRequestVo pageRequestVo) {
         return articleService.listByPage(pageRequestVo);
     }
 }

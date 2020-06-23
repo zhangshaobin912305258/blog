@@ -1,6 +1,8 @@
 package com.zhang.blog.util;
 
 import cn.hutool.core.codec.Base64;
+import cn.hutool.json.JSONUtil;
+import com.zhang.blog.vo.request.LoginDto;
 
 import javax.crypto.Cipher;
 import java.io.ByteArrayOutputStream;
@@ -77,5 +79,17 @@ public class RSAUtil {
         byte[] decryptedData = out.toByteArray();
         out.close();
         return decryptedData;
+    }
+
+    public static void main(String[] args) throws Exception {
+        String publicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBeKFwUbfHTYEP95lxPSUqtsbW24vH2rCFG4f1SgXXUPE7gJp9XnlfGfl6BEME+t0ecUTtGgGn97KNXvCPA9AaSMTId5WnNjYi8mDWq4zojflZOTI5q8ikpV9OR3DLZwPkuCHDqOjEWbV/2CI3W55IzGrl5GNZe289IqfsJ0Rg8QIDAQAB";
+        LoginDto loginDto = new LoginDto();
+        loginDto.setUsername("zhang");
+        loginDto.setPassword("zhang");
+        String json = JSONUtil.toJsonStr(loginDto);
+
+        byte[] encrypt = encrypt(json.getBytes("utf-8"), publicKey);
+        String result = Base64.encode(encrypt);
+        System.out.println(result);
     }
 }

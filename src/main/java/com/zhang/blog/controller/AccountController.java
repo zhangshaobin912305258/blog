@@ -3,6 +3,7 @@ package com.zhang.blog.controller;
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.LineCaptcha;
 import cn.hutool.core.map.MapUtil;
+import com.zhang.blog.annotation.Decrypt;
 import com.zhang.blog.service.UserService;
 import com.zhang.blog.vo.Result;
 import com.zhang.blog.vo.request.LoginDto;
@@ -42,6 +43,7 @@ public class AccountController extends BaseController {
      * @return
      */
     @PostMapping("/login")
+    @Decrypt
     public Result login(@Validated @RequestBody LoginDto loginDto) {
         return userService.login(loginDto, httpServletResponse);
     }

@@ -1,4 +1,4 @@
-package com.zhang.blog.config;
+package com.zhang.blog.config.exception;
 
 import com.zhang.blog.constants.ResultCode;
 import com.zhang.blog.vo.Result;
@@ -17,7 +17,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = RuntimeException.class)
     public Result handler(RuntimeException e) {
         log.error("运行时异常：----------------{}", e);
-        return Result.fail(ResultCode.UNAUTHORIZED, e.getMessage());
+        return Result.fail(ResultCode.ERROR, e.getMessage());
+    }
+
+    @ExceptionHandler(DecryptException.class)
+    public Result handler(DecryptException e) {
+        return Result.fail(ResultCode.PARAM_ERROR, e.getMessage());
     }
 
 

@@ -1,7 +1,6 @@
 package com.zhang.blog.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.zhang.blog.converter.UserConverter;
 import com.zhang.blog.entity.Permission;
 import com.zhang.blog.entity.Role;
 import com.zhang.blog.entity.User;
@@ -49,6 +48,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private PermissionService permissionService;
     @Autowired
     private RoleService roleService;
+    @Autowired
+    private com.zhang.blog.vo.mapper.UserMapper userMapper;
+
 
 /*    @Override
     public Result login(LoginDto loginDto, HttpServletResponse httpServletResponse) {
@@ -88,7 +90,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         String token = jwtTokenUtil.generateToken(userDetails);
         httpServletResponse.setHeader("Authorization", token);
         httpServletResponse.setHeader("Access-control-Expose-Headers", "Authorization");
-        return Result.ok(UserConverter.INSTANCE.domain2Vo(user));
+        return Result.ok(userMapper.toDto(user));
     }
 
     @Override

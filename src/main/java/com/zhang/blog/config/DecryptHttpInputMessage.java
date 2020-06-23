@@ -30,10 +30,10 @@ public class DecryptHttpInputMessage implements HttpInputMessage {
             this.headers = inputMessage.getHeaders();
             String content = (String) (new BufferedReader(new InputStreamReader(inputMessage.getBody()))).lines().collect(Collectors.joining(System.lineSeparator()));
             String decryptBody;
-            if (content.startsWith("{")) {
+           /* if (content.startsWith("{")) {
                 log.info("Unencrypted without decryption:{}", content);
                 decryptBody = content;
-            } else {
+            } else {*/
                 StringBuilder json = new StringBuilder();
                 content = content.replaceAll(" ", "+");
                 if (!StringUtils.isEmpty(content)) {
@@ -51,7 +51,7 @@ public class DecryptHttpInputMessage implements HttpInputMessage {
                 decryptBody = json.toString();
                 log.info("收到的加密报文:\n{}", content);
                 log.info("解密后报文:\n{}", decryptBody);
-            }
+            //}
 
             this.body = new ByteArrayInputStream(decryptBody.getBytes());
         }

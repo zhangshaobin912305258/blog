@@ -1,6 +1,6 @@
 server:
   port: 8080
-# DataSource Config
+# 数据库配置
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -11,10 +11,6 @@ spring:
     host: 139.159.227.224
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**Mapper.xml
-shiro-redis:
-  enabled: true
-  redis-manager:
-    host: 139.159.227.224:6379
 rsa:
   encrypt:
     debug: false # true表示开启调试，不加密。（方便开发时测试）

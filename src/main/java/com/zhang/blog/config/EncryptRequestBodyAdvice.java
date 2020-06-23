@@ -1,6 +1,8 @@
 package com.zhang.blog.config;
 
 import com.zhang.blog.annotation.Decrypt;
+import com.zhang.blog.config.exception.DecryptException;
+import com.zhang.blog.constants.Const;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
@@ -47,11 +49,11 @@ public class EncryptRequestBodyAdvice implements RequestBodyAdvice {
         if (this.encrypt) {
             try {
                 return new DecryptHttpInputMessage(inputMessage, this.secretKeyConfig.getPrivateKey(), this.secretKeyConfig.getCharset());
-            } catch (Exception var6) {
-                log.error("解密失败", var6);
+            } catch (Exception e) {
+                log.error("解密失败:{}", e.getMessage());
+                throw new DecryptException(Const.DECRYPTION_FAILED);
             }
         }
-
         return inputMessage;
     }
 
