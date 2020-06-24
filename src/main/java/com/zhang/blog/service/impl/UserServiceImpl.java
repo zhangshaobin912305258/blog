@@ -1,6 +1,8 @@
 package com.zhang.blog.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.zhang.blog.constants.Const;
+import com.zhang.blog.constants.ResultCode;
 import com.zhang.blog.entity.Permission;
 import com.zhang.blog.entity.Role;
 import com.zhang.blog.entity.User;
@@ -10,6 +12,7 @@ import com.zhang.blog.service.PermissionService;
 import com.zhang.blog.service.RoleService;
 import com.zhang.blog.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zhang.blog.util.AssertUtil;
 import com.zhang.blog.util.JwtTokenUtil;
 import com.zhang.blog.vo.Result;
 import com.zhang.blog.vo.request.LoginDto;
@@ -70,7 +73,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public User getByUsername(String username) {
-        Assert.notNull(username, "用户名不能为空");
+        AssertUtil.notEmpty(username, Result.fail(ResultCode.PARAM_ERROR, Const.USER_NOT_EMPTY));
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(User::getUsername, username);
         return getOne(queryWrapper);
@@ -81,9 +84,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         String username = loginDto.getUsername();
         String password = loginDto.getPassword();
         User user = getByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException("用户名或密码错误");
-        }
+        AssertUtil.notNull(user, Result.fail(ResultCode.USER_NOT_FOUND));
         UsernamePasswordAuthenticationToken upToken = new UsernamePasswordAuthenticationToken(username, password);
         Authentication authentication = authenticationManager.authenticate(upToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);

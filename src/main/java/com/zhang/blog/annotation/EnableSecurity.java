@@ -1,7 +1,7 @@
 package com.zhang.blog.annotation;
 
-import com.zhang.blog.config.EncryptRequestBodyAdvice;
-import com.zhang.blog.config.EncryptResponseBodyAdvice;
+import com.zhang.blog.security.EncryptRequestBodyAdvice;
+import com.zhang.blog.security.EncryptResponseBodyAdvice;
 import com.zhang.blog.config.SecretKeyConfig;
 import org.springframework.context.annotation.Import;
 

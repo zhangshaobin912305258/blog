@@ -20,9 +20,14 @@ public class GlobalExceptionHandler {
         return Result.fail(ResultCode.ERROR, e.getMessage());
     }
 
-    @ExceptionHandler(DecryptException.class)
-    public Result handler(DecryptException e) {
-        return Result.fail(ResultCode.PARAM_ERROR, e.getMessage());
+    /**
+     * 拦截自定义异常
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(BaseException.class)
+    public Result handler(BaseException e) {
+        return e.getResult();
     }
 
 

@@ -1,4 +1,4 @@
-package com.zhang.blog.config;
+package com.zhang.blog.security;
 
 import cn.hutool.core.codec.Base64;
 import com.zhang.blog.util.RSAUtil;

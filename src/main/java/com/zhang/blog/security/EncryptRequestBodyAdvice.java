@@ -1,8 +1,11 @@
-package com.zhang.blog.config;
+package com.zhang.blog.security;
 
 import com.zhang.blog.annotation.Decrypt;
-import com.zhang.blog.config.exception.DecryptException;
+import com.zhang.blog.config.SecretKeyConfig;
+import com.zhang.blog.config.exception.BaseException;
 import com.zhang.blog.constants.Const;
+import com.zhang.blog.constants.ResultCode;
+import com.zhang.blog.vo.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
@@ -51,7 +54,7 @@ public class EncryptRequestBodyAdvice implements RequestBodyAdvice {
                 return new DecryptHttpInputMessage(inputMessage, this.secretKeyConfig.getPrivateKey(), this.secretKeyConfig.getCharset());
             } catch (Exception e) {
                 log.error("解密失败:{}", e.getMessage());
-                throw new DecryptException(Const.DECRYPTION_FAILED);
+                throw new BaseException(Result.fail(ResultCode.DECRYPTION_FAILED));
             }
         }
         return inputMessage;

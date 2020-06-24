@@ -1,8 +1,9 @@
-package com.zhang.blog.config;
+package com.zhang.blog.security;
 
 import cn.hutool.core.codec.Base64;
 import cn.hutool.json.JSONUtil;
 import com.zhang.blog.annotation.Encrypt;
+import com.zhang.blog.config.SecretKeyConfig;
 import com.zhang.blog.util.RSAUtil;
 import com.zhang.blog.vo.Result;
 import lombok.extern.slf4j.Slf4j;

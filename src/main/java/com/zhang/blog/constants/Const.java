@@ -7,5 +7,5 @@ package com.zhang.blog.constants;
  */
 public class Const {
 
-    public static String DECRYPTION_FAILED = "解密失败,请检查参数";
+    public static String USER_NOT_EMPTY = "用户名不能为空";
 }
