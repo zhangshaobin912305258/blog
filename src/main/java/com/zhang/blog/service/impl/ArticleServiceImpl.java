@@ -3,6 +3,7 @@ package com.zhang.blog.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.zhang.blog.constants.Const;
 import com.zhang.blog.constants.ResultCode;
 import com.zhang.blog.entity.Article;
 import com.zhang.blog.entity.ArticleLabel;
@@ -107,6 +108,10 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
 
     @Override
     public Result delete(Integer id) {
+        AssertUtil.isTrue(id != null && id > 0, Result.fail(ResultCode.PARAM_ERROR));
+        Article article = getById(id);
+        AssertUtil.notNull(article, Result.fail(ResultCode.PARAM_ERROR, Const.ARTICLE_NOT_FOUND));
+
         return null;
     }
 }

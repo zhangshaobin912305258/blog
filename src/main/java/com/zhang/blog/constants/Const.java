@@ -8,4 +8,5 @@ package com.zhang.blog.constants;
 public class Const {
 
     public static String USER_NOT_EMPTY = "用户名不能为空";
+    public static String ARTICLE_NOT_FOUND = "文章不存在";
 }
