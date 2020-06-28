@@ -7,6 +7,7 @@ import com.zhang.blog.service.ArticleLabelService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,9 +22,22 @@ import java.util.List;
 public class ArticleLabelServiceImpl extends ServiceImpl<ArticleLabelMapper, ArticleLabel> implements ArticleLabelService {
 
     @Override
-    public List<ArticleLabel> listByLabelId(long labelId) {
+    public List<ArticleLabel> listByLabelId(Long labelId) {
+        if (labelId == null || labelId == 0) {
+            return new ArrayList<>();
+        }
         LambdaQueryWrapper<ArticleLabel> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(labelId > 0, ArticleLabel::getLabelId, labelId);
+        queryWrapper.eq(ArticleLabel::getLabelId, labelId);
+        return list(queryWrapper);
+    }
+
+    @Override
+    public List<ArticleLabel> listByArticleId(Integer articleId) {
+        if (articleId == null || articleId == 0) {
+            return new ArrayList<>();
+        }
+        LambdaQueryWrapper<ArticleLabel> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(ArticleLabel::getArticleId, articleId);
         return list(queryWrapper);
     }
 }

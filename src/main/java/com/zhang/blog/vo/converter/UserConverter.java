@@ -1,4 +1,4 @@
-package com.zhang.blog.vo.mapper;
+package com.zhang.blog.vo.converter;
 
 import com.zhang.blog.entity.User;
 import com.zhang.blog.vo.response.UserVo;
@@ -11,5 +11,5 @@ import org.mapstruct.ReportingPolicy;
  * 创建人：zhang
  */
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public interface UserMapper extends BaseMapper<UserVo, User>{
+public interface UserConverter extends BaseConverter<UserVo, User> {
 }

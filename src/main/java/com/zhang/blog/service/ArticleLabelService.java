@@ -15,5 +15,7 @@ import java.util.List;
  */
 public interface ArticleLabelService extends IService<ArticleLabel> {
 
-    List<ArticleLabel> listByLabelId(long labelId);
+    List<ArticleLabel> listByLabelId(Long labelId);
+
+    List<ArticleLabel> listByArticleId(Integer articleId);
 }

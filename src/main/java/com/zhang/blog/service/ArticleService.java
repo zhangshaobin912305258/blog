@@ -17,4 +17,10 @@ import com.zhang.blog.vo.response.PageResult;
 public interface ArticleService extends IService<Article> {
 
     Result<PageResult> listByPage(PageRequestVo pageRequestVo);
+
+    Result insert(Article article);
+
+    Result modify(Article article);
+
+    Result delete(Integer id);
 }

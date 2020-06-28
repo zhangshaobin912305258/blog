@@ -1,7 +1,11 @@
 package com.zhang.blog.service;
 
+import com.zhang.blog.entity.Article;
+import com.zhang.blog.entity.ArticleLabel;
 import com.zhang.blog.entity.Label;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +17,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface LabelService extends IService<Label> {
 
+    Label getByLabelName(String labelName);
+
+    ArticleLabel saveOrUpdate(ArticleLabel articleLabel);
+
+    void saveOrUpdate(List<Label> labels, Article article);
+
+    List<ArticleLabel> listArticleLabels(Integer articleId);
 }

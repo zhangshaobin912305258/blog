@@ -1,4 +1,4 @@
-package com.zhang.blog.vo.mapper;
+package com.zhang.blog.vo.converter;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import java.util.List;
  * 创建时间：2020/6/23 4:42 下午
  * 创建人：zhang
  */
-public interface BaseMapper<D, E> {
+public interface BaseConverter<D, E> {
 
 
 

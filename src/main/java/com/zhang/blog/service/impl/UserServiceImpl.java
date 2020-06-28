@@ -14,7 +14,9 @@ import com.zhang.blog.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhang.blog.util.AssertUtil;
 import com.zhang.blog.util.JwtTokenUtil;
+import com.zhang.blog.util.ListUtils;
 import com.zhang.blog.vo.Result;
+import com.zhang.blog.vo.converter.UserConverter;
 import com.zhang.blog.vo.request.LoginDto;
 import com.zhang.blog.vo.response.UserVo;
 import org.apache.commons.lang3.StringUtils;
@@ -27,7 +29,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -53,7 +54,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Autowired
     private RoleService roleService;
     @Autowired
-    private com.zhang.blog.vo.mapper.UserMapper userMapper;
+    private UserConverter userConverter;
 
 
 /*    @Override
@@ -88,37 +89,34 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         UsernamePasswordAuthenticationToken upToken = new UsernamePasswordAuthenticationToken(username, password);
         Authentication authentication = authenticationManager.authenticate(upToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        UserDetails userDetails = loadUserByUsername(username);
+        loadUserByUsername(username);
         String token = jwtTokenUtil.generateToken(user);
         httpServletResponse.setHeader("Authorization", token);
         httpServletResponse.setHeader("Access-control-Expose-Headers", "Authorization");
-        return Result.ok(userMapper.toDto(user));
+        return Result.ok(userConverter.toDto(user));
     }
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         // 查数据库
         User user = getByUsername(userName);
-        if (user == null) {
-            throw new UsernameNotFoundException("用户名或密码错误");
-        }
+        AssertUtil.notNull(user, Result.fail(ResultCode.USER_NOT_FOUND));
         Long userId = user.getId();
         List<Role> roles = roleService.getByUserId(userId);
-        if (roles != null && !roles.isEmpty()) {
-            List<String> roleStr = roles.stream()
+        if (ListUtils.isNotEmpty(roles)) {
+            user.setRoles(roles.stream()
                     .map(Role::getRoleName)
-                    .collect(Collectors.toList());
-            user.setRoles(roleStr);
+                    .collect(Collectors.toList()));
         }
         List<Permission> permissions = permissionService.getByUserId(userId);
-        List<GrantedAuthorityImpl> grantedAuthorities =
-                permissions.stream()
-                        .map(Permission::getPermissionName)
-                        .distinct()
-                        .filter(permission -> StringUtils.isNotEmpty(permission))
-                        .map(GrantedAuthorityImpl::new)
-                        .collect(Collectors.toList());
-        user.setAuthorities(grantedAuthorities);
+        if (ListUtils.isNotEmpty(permissions)) {
+            user.setAuthorities(permissions.stream()
+                    .map(Permission::getPermissionName)
+                    .distinct()
+                    .filter(permission -> StringUtils.isNotEmpty(permission))
+                    .map(GrantedAuthorityImpl::new)
+                    .collect(Collectors.toList()));
+        }
         return user;
     }
 }

@@ -28,10 +28,6 @@ public class Result<T> implements Serializable {
         return build(resultCode.getCode(), resultCode.getMsg(), null);
     }
 
-    public static <T> Result fail(ResultCode resultCode, String msg) {
-        return build(resultCode.getCode(), msg, null);
-    }
-
     public static <T> Result fail(ResultCode resultCode, T data) {
         return build(resultCode.getCode(), resultCode.getMsg(), data);
     }

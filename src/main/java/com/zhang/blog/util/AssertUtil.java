@@ -20,4 +20,10 @@ public class AssertUtil {
             throw new BaseException(result);
         }
     }
+
+    public static void isTrue(boolean expression, Result result) {
+        if (!expression) {
+            throw new BaseException(result);
+        }
+    }
 }
